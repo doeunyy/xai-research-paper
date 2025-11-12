@@ -1,51 +1,73 @@
-# ✨ 이화도인지 프로젝트 타임라인 ✨ 
+# Analysis of Diffusion Model's Inference Mechanism Using XAI Techniques
+This repository contains the implementation and analysis for understanding the inference mechanism of diffusion models using Explainable AI (XAI). 
+**This research was conducted by the only undergraduate team selected for the KCC 2024 Explainable AI Workshop, where Doeun Kim participated as the presenting author.**
+The study investigates how Denoising Diffusion Probabilistic Models (DDPM) focus on different pixel regions across timesteps by applying Integrated Gradients, Gradient SHAP, and Occlusion techniques. The goal is to interpret the decision-making process behind diffusion-based image generation.
 
-## 스타트 학기 (2024.03.- 2024.06.)
-### 1차 논문 스터디 (2024. 3. 26. - 2024. 4. 14.)
-- Deep Unsupervised Learning using Nonequilibrium Thermodynamics, ICML'15
-- Denoising Diffusion Probabilistic Models, NeurIPS'20
-- Diffusion Models Beat GANs on Image Synthesis, NeurIPS’21
-- DENOISING DIFFUSION IMPLICIT MODELS, ICLR'21
+[📄 Download Poster (PDF)](https://github.com/doeunyy/xai-research-paper/blob/main/xai-poster-eng.pdf)
 
-### 2차 논문 스터디 (2024. 5. 3. - 2024. 5. 20.)
-- Diffusion + Quantization
-  - Q-Diffusion: Quantizing Diffusion Models
-  - PTQD: Accurate Post-Training Quantization for Diffusion Models
-  - Temporal Dynamic Quantization for Diffusion Models
-- Diffusion + Knowledge Distillation
-  - On Distillation of Guided Diffusion Models
-  - Knowledge Diffusion for Distillation
-- Diffusion + Pruning
-  - Structural Pruning for Diffusion Models
-- Diffusion + Token Merging
-  - Token Merging for Fast Stable
 
-### 논문 코드 실제 구현 및 검증 (2024. 5. 24. - 2024. 5. 31.)
-- [Latent_Diffusion_Model_v1_APl.ipynb](https://github.com/Ewha-DoInJi/Generative_AI_research/blob/main/diffusion_models/Latent_Diffusion_Model_v1_API.ipynb)
-- [Stable_Diffusion_v1_huggingface_APl.ipynb](https://github.com/Ewha-DoInJi/Generative_AI_research/blob/main/diffusion_models/Stable_Diffusion_v1_huggingface_API.ipynb)
-- [DDIM_V1_APl.ipynb](https://github.com/Ewha-DoInJi/Generative_AI_research/blob/main/diffusion_models/DDIM_v1_API.ipynb)
-- [DDPM_diffusion_model_v2.ipynb](https://github.com/Ewha-DoInJi/Generative_AI_research/blob/main/diffusion_models/DDPM_diffusion_model_v2.ipynb)
+## Table of Contents
 
-### XAI 스터디 (2024. 5. 31. - 2024. 6. 10.)
-1. XAI 관련 강의 수강
+1. [Overview](#overview)
+2. [Project Timeline](#project-timeline)
+3. [Key Contributions](#key-contributions)
+4. [Methodology](#methodology)
+5. [Experimental Results](#experimental-results)
+6. [Authors](#authors)
 
-    - [XAI Open - XAI Tutorial | Application of XAI Toolkit for PyTorch | Soyeon Kim](https://www.youtube.com/watch?v=bnekX0cvecY)
-    - [고려대학교 산업경영공학부 DSBA 연구실 - XAI Review](https://www.youtube.com/watch?v=Grc7egfZP84&list=PLetSlH8YjIfVUbEQj30Z6IkGCVP3tLKHx)
-    - [삼성SDS - [Techtonic 2020] Track 1. eXplainable AI(X-AI): 딥러닝 모델은 무엇을 보는가? - 정형식 프로](https://www.youtube.com/watch?v=GiP0r2_OIak)
+## Overview
+Diffusion models achieve high-quality image synthesis through iterative denoising, but their internal operations remain difficult to interpret due to their black-box nature. This project applies XAI techniques to reveal how model attention evolves throughout the diffusion process.
+Using 100 noisy samples across 100 timesteps for four ImageNet classes (Persian cat, Siamese cat, Egyptian cat, Tiger), we track attribution changes and likelihood progression to analyze how the model identifies and reconstructs essential visual features.
 
-2. XAI 코드 직접 실행 및 검증
+## Project Timeline
+A concise summary of the Ewha DoInJi project timeline leading to the development of this research.
+- Mar–Apr 2024: Initial literature study on diffusion models, including DDPM, DDIM, LDM, and score-based generative processes.
+- May 2024: Secondary paper review on model optimization (quantization, distillation, pruning, token merging).
+- Late May 2024: Implemented and validated multiple diffusion models (DDPM, DDIM, Stable Diffusion, LDM) using reproducible Jupyter notebooks.
+- May–Jun 2024: Studied XAI techniques and executed hands-on experiments using Captum (Integrated Gradients, Grad-SHAP, Occlusion).
+- Jun 2024: Authored and submitted the XAI workshop paper; poster selected for presentation at the KCC 2024 Explainable AI Workshop.
 
-    - [Tutorial_11_Captum code (Soyeon Kim).ipynb <br>](https://github.com/Ewha-DoInJi/Generative_AI_research/blob/main/xai/Tutorial_11_Captum%20code%20(Soyeon%20Kim).ipynb)
-    - [XAl_with_Resnet.ipynb](https://github.com/Ewha-DoInJi/Generative_AI_research/blob/main/xai/XAI_with_Resnet.ipynb)
-    - [XAl_with_classification_task.ipynb](https://github.com/Ewha-DoInJi/Generative_AI_research/blob/main/xai/XAI_with_classification_task.ipynb)
+## Key Contributions
+- Applied Integrated Gradients, Gradient SHAP, and Occlusion to diffusion model inference.
+- Constructed timestep-wise noisy datasets for four ImageNet classes.
+- Identified critical intervals where classification likelihood increases sharply.
+- Demonstrated shared feature development patterns: outline → key features → fine details.
+- Provided cross-class comparative visualizations and analysis.
 
-### KCC 2024 '설명가능 인공지능(XAI) 워크샵' 논문 제출 및 참가 (2024. 6. 10. - 2024. 6. 27.)
-1. XAI 논문 작성 및 제출 (2024. 6. 10. - 2024. 6. 15.)
+## Methodology
+### Model Configuration
+- Base model: DDPM (Denoising Diffusion Probabilistic Models)
+- Classifier: Pretrained ResNet-18 (ImageNet-1000)
+- Classes analyzed: Persian cat, Siamese cat, Egyptian cat, Tiger
+- 100 noisy images sampled per class across timesteps 1–100
 
-    - 논문명: XAI 기법을 이용한 확산 모델의 추론 메커니즘 분석
-    - (온라인 게시 후 링크 첨부 예정)
-   
-2. KCC 2024 '설명가능 인공지능(XAI) 워크샵' 참가 및 포스터 세션 발표 예정 (2024. 6. 27. 예정)
+### XAI Techniques
+- Integrated Gradients: Gradient-based attribution relative to a baseline
+- Gradient SHAP: Hybrid technique using multiple baselines for stability
+- Occlusion: Perturbation method masking regions to measure significance
 
-    - 워크샵 참가 예정
-    - 포스터 발표 논문 선정 및 포스터 발표 예정
+### Likelihood Tracking
+Softmax outputs of the classifier were analyzed across timesteps to identify critical moments where classification confidence sharply increases.
+
+## Experimental Results
+### Attribution Analysis
+- Early timesteps: Model relies on overall silhouette and broad structural cues.
+- Mid timesteps (cats: around 40–60): Attribution sharply focuses on eyes and facial boundaries.
+- Tiger class: Earlier spike (~30–40) due to stripe features, followed by facial refinement.
+
+### Likelihood Insights
+- Cat classes consistently reach peak confidence around timestep 60.
+- Tiger class shows initial confidence growth near timestep 30 due to distinctive textures.
+- Evolution of attention resembles human drawing: coarse shapes → textures → fine details.
+
+## Conclusion
+XAI techniques successfully reveal the internal reasoning of diffusion models across timesteps. The findings demonstrate a clear progression of model attention from global structure to class-specific features and finally to detailed facial characteristics. These insights can guide improvements in interpretability, robustness, and text-to-image alignment for diffusion models.
+
+## Authors
+
+- Doeun Kim (Co-first Author) — [doeunkim.cs@gmail.com](mailto:doeunkim.cs@gmail.com)
+- Jieun Byeon (Co-first Author)
+- Inae Park (Co-first Author)
+
+Department of Computer Science and Engineering <br>
+Ewha Womans University
