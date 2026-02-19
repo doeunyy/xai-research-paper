@@ -1,4 +1,13 @@
 # Analysis of Diffusion Model's Inference Mechanism Using XAI Techniques
+
+> **TL;DR**
+> - Analyzed **diffusion model inference** using XAI techniques across timesteps
+> - Applied **Integrated Gradients, Gradient SHAP, and Occlusion** to DDPM-generated images
+> - Tracked how model attention evolves from **global structure → class-specific features → fine details**
+> - Presented as a poster at the **KCC 2024 Explainable AI Workshop**
+
+
+
 This repository contains the implementation and analysis for understanding the inference mechanism of diffusion models using Explainable AI (XAI). 
 **This research was conducted by the only undergraduate team selected for the KCC 2024 Explainable AI Workshop, where Doeun Kim participated as the presenting author.**
 The study investigates how Denoising Diffusion Probabilistic Models (DDPM) focus on different pixel regions across timesteps by applying Integrated Gradients, Gradient SHAP, and Occlusion techniques. The goal is to interpret the decision-making process behind diffusion-based image generation.
